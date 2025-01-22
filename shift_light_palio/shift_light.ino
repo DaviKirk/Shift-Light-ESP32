@@ -92,8 +92,11 @@ void loop() {
         if (myELM327.nb_rx_state == ELM_SUCCESS) {
           Serial.print("RPM: ");
           Serial.println(RPM);
-          while (RPM >= 1500) {
+          if (RPM >= 4500) {
             digitalWrite(RPMlight, HIGH);
+          }
+          else{
+            digitalWrite(RPMlight, LOW);
           }
         } else if (myELM327.nb_rx_state != ELM_GETTING_MSG) {
           myELM327.printError();
